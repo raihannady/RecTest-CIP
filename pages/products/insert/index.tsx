@@ -27,7 +27,6 @@ const insert_product: React.FC = () => {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
 
   useEffect(() => {
-    // Mengambil data supplier saat komponen dimount
     const fetchSuppliers = async () => {
       try {
         const response = await fetch(
@@ -37,10 +36,6 @@ const insert_product: React.FC = () => {
         if (response.ok) {
           const supplierData = await response.json();
 
-          // Log the data received from the API
-          console.log("Supplier data:", supplierData);
-
-          // Ensure that supplierData is an array before setting it
           if (Array.isArray(supplierData)) {
             setSuppliers(supplierData);
           } else {

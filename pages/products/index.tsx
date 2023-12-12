@@ -36,7 +36,7 @@ const ListProducts: FC<ListProductsProps> = ({ data }) => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Panggil fetchData saat komponen pertama kali dimuat
+  }, []);
 
   const handleDelete = async (productId: number) => {
     try {
@@ -49,8 +49,7 @@ const ListProducts: FC<ListProductsProps> = ({ data }) => {
 
       if (response.ok) {
         console.log("Product deleted successfully");
-        // Refresh the product list or update state as needed
-        fetchData(); // Memanggil fungsi yang mengambil data baru
+        fetchData();
         router.push("/products");
       } else {
         console.error("Error deleting product:", response.statusText);
@@ -66,7 +65,6 @@ const ListProducts: FC<ListProductsProps> = ({ data }) => {
         <h1 className="text-3xl text-center">Data Produk</h1>
       </div>
       <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
-        {/* Start coding here */}
         <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
             <div className="w-full md:w-1/2">
