@@ -41,7 +41,6 @@ async function getProducts(req: NextApiRequest, res: NextApiResponse) {
   const productId = req.query.id;
 
   if (productId) {
-    // Jika ada ID yang disertakan di query parameter, ambil produk berdasarkan ID
     db.get(
       "SELECT produk.*, suplier.nama_suplier FROM produk JOIN suplier ON produk.suplier_id = suplier.id_suplier WHERE produk.id=?",
       [productId],
@@ -57,7 +56,6 @@ async function getProducts(req: NextApiRequest, res: NextApiResponse) {
       }
     );
   } else {
-    // Jika tidak ada ID yang disertakan, ambil semua produk dengan informasi nama suplier
     db.all(
       "SELECT produk.*, suplier.nama_suplier FROM produk JOIN suplier ON produk.suplier_id = suplier.id_suplier",
       (err, productsWithSuppliers) => {
@@ -96,7 +94,7 @@ function createProduct(req: NextApiRequest, res: NextApiResponse) {
 
 function updateProduct(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body as Product;
-  const productId = req.query.id; // Assuming you pass the product ID in the query
+  const productId = req.query.id;
 
   if (!productId) {
     res.status(400).json({ message: "Product ID is required for updating" });
